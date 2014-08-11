@@ -18,6 +18,7 @@ package { 'php5-mysql': ensure => 'installed' }
 package { 'php5-xsl': ensure => 'installed' }
 package { 'php5-intl': ensure => 'installed' }
 package { 'php5-gd': ensure => 'installed' }
+package { 'php5-xdebug': ensure => 'installed' }
 
 class { '::mysql::server': root_password => 'UNSET', }
 
