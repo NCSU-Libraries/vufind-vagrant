@@ -61,15 +61,9 @@ service { 'vufind':
   status => 'sudo /etc/init.d/vufind check'
 }
 
-# Fix for saucy php5-mcrypt (http://i-mscp.net/index.php/Thread/4380)
-file { '/etc/php5/mods-available/mcrypt.ini':
-  ensure => 'link',
-  target => '/etc/php5/conf.d/mcrypt.ini',
-}
-
 exec { '/usr/sbin/php5enmod mcrypt':
   creates => '/etc/php5/apache2/conf.d/20-mcrypt.ini',
   notify => Service['apache2'],
-  require => File['/etc/php5/mods-available/mcrypt.ini'],
+  require => Package['php5-mcrypt'],
 }
 
