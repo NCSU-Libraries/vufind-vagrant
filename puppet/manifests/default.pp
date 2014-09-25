@@ -9,6 +9,7 @@ package { 'libapache2-mod-php5': ensure => 'installed' }
 package { 'php-apc': ensure => 'installed' }
 package { 'default-jdk': ensure => 'installed' }
 package { 'php5': ensure => 'installed' }
+package { 'php5-curl': ensure => 'installed'} # needed for CAS
 package { 'php5-dev': ensure => 'installed' }
 package { 'php-pear': ensure => 'installed' }
 package { 'php5-json': ensure => 'installed' }
