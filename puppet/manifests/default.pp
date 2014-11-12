@@ -19,7 +19,6 @@ package { 'php5-mysql': ensure => 'installed' }
 package { 'php5-xsl': ensure => 'installed' }
 package { 'php5-intl': ensure => 'installed' }
 package { 'php5-gd': ensure => 'installed' }
-package { 'php5-xdebug': ensure => 'installed' }
 
 class { '::mysql::server': root_password => 'UNSET', }
 
@@ -68,3 +67,13 @@ exec { '/usr/sbin/php5enmod mcrypt':
   require => Package['php5-mcrypt'],
 }
 
+# This is a development setup, so we want xdebug available to be enabled,
+# but the module can have a significant impact on performance when enabled,
+# so disable it.
+package { 'php5-xdebug': ensure => 'installed' }
+exec { '/usr/sbin/php5dismod xdebug':
+  require => Package['php5-xdebug'],
+  notify => Service['apache2'],
+  onlyif => "/usr/sbin/php5query -s apache2 -m xdebug ||\
+             /usr/sbin/php5query -s cli -m xdebug",
+}
