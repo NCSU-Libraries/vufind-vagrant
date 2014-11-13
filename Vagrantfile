@@ -20,5 +20,8 @@ Vagrant.configure('2') do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--memory", 3584]
+    # The following may help with indexing performance:
+    # v.customize ["modifyvm", :id, "--ioapic", "on"]
+    # v.customize ["modifyvm", :id, "--cpus", 4]
   end
 end
