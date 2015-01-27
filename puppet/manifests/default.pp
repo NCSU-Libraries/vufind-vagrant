@@ -5,20 +5,24 @@ exec { 'apt-update':
 }
 Exec['apt-update'] -> Package <| |>
 
-package { 'libapache2-mod-php5': ensure => 'installed' }
-package { 'php-apc': ensure => 'installed' }
-package { 'default-jdk': ensure => 'installed' }
-package { 'php5': ensure => 'installed' }
-package { 'php5-curl': ensure => 'installed'} # needed for CAS
-package { 'php5-dev': ensure => 'installed' }
-package { 'php-pear': ensure => 'installed' }
-package { 'php5-json': ensure => 'installed' }
-package { 'php5-ldap': ensure => 'installed' }
-package { 'php5-mcrypt': ensure => 'installed' }
-package { 'php5-mysql': ensure => 'installed' }
-package { 'php5-xsl': ensure => 'installed' }
-package { 'php5-intl': ensure => 'installed' }
-package { 'php5-gd': ensure => 'installed' }
+package { [
+    'libapache2-mod-php5',
+    'php-apc',
+    'default-jdk',
+    'php5',
+    'php5-curl', # needed for CAS
+    'php5-dev',
+    'php-pear',
+    'php5-json',
+    'php5-ldap',
+    'php5-mcrypt',
+    'php5-mysql',
+    'php5-xsl',
+    'php5-intl',
+    'php5-gd',
+  ]:
+  ensure => installed,
+}
 
 class { '::mysql::server': root_password => 'UNSET', }
 
