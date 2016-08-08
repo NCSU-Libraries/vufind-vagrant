@@ -6,11 +6,11 @@ Derived from https://github.com/quartsize/vufind-vagrant This has been updated f
 
 ## Requirements (Host OS):
 
-vagrant w/Virtualbox and puppet installed on the host OS.  Once you have succcessfully provisioned the a box, you can save it with
+vagrant w/Virtualbox and puppet installed on the host OS.  Once you have succcessfully provisioned the box, you can save it with
 
 `vagrant package --output trln-vufind-quickstart.box`
 
-That will create a large file, but you can provide it to Windows users (or ''nix users that do not have all the requirements -- you still need Vagrant and Virtualbox) and it may work.  This process is not yet tested, unfortunately.  
+That will create a large file, but you can provide it to Windows users (or ''nix users that do not have all the requirements -- you still need Vagrant and Virtualbox) and it may work.  This generates a large file (~700MB), which is why we cannot yet provide fully setup boxes and have to rely on provisioning.
 
 ## Setup
 
@@ -23,7 +23,7 @@ VuFind's files will be in the `vufind` directory which is mounted as `/usr/local
 
 Vufind runs under apache/port 80 on the *guest* OS, exported to port 8080 on the host.  `http://localhost:8080/vufind/Install` will allow you to continue configuration.
 
-Solr runs on port `8080` on the guest, exported to `8080` on the host.  Acccessible via `http://localhost:8088/solr`
+Solr runs on port `8080` on the guest, exported to `8088` on the host.  Acccessible via `http://localhost:8088/solr`
 
 1. `git clone https://github.com/vufind-org/vufind`
 
