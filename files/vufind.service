@@ -1,0 +1,9 @@
+[Unit]
+Description=Vufind Solr service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/usr/local/vufind/solr.sh start
+ExecStop=/usr/local/vufind/solr.sh stop
