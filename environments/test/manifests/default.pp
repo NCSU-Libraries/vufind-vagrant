@@ -4,6 +4,7 @@ Exec {
 
 package { [
     'epel-release',
+    'composer',
     'java-1.8.0-openjdk-headless',
     'mariadb-server',
     'php',
@@ -39,7 +40,7 @@ file { "/etc/composer":
 }
 
 
-exec { "/usr/local/bin/composer.phar install":
+exec { "composer install":
     cwd => '/usr/local/vufind',
     path => [ '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin' ],
     environment => ["COMPOSER_HOME=/etc/composer"],
@@ -70,22 +71,10 @@ exec { "firewalld-reload":
 }
     
 
-# ensure Apache user can write to vufind directory
-
-file { "/usr/local/vufind":
-    ensure => directory,
-    mode => '0755',
-    owner => 'apache',
-    group => 'apache',
-    ignore => 'vendor',
-    recurse => true,
-}
-
 service { 'mariadb':
     enable => true,
     ensure => running
 }
-
 
 ##### Apache setup ############################################################
 
