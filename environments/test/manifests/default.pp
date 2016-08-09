@@ -2,13 +2,8 @@ Exec {
   path => '/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
-package { "epel-repo":
-    provider => 'rpm',
-    ensure => present,
-    source => "https://dl.fedoraproject.org/pub/epel/epel-release-latest-$operatingsystemmajrelease.noarch.rpm", 
-}
-
 package { [
+    'epel-release',
     'java-1.8.0-openjdk-headless',
     'mariadb-server',
     'php',
